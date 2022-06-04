@@ -1,9 +1,41 @@
 import React from 'react';
-import { Card } from './components/Card/Card';
-import { Drawer } from './components/Drawer/Drawer';
-import { Header } from './components/Header/Header';
+import Card from './components/Card';
+import Drawer from './components/Drawer';
+import Header from './components/Header';
+
+const arr = [
+  {
+    id: 1,
+    name: 'Мужские Кроссовки Nuke Blazer Mid Suede',
+    alt: 'Мужские Кроссовки Nuke Blazer Mid Suede',
+    price: 12994,
+    img: '/img/sneakers/1.jpg'
+  },
+  {
+    id: 2,
+    name: 'Мужские Кроссовки Nike Air Max 270',
+    alt: 'Мужские Кроссовки Nike Air Max 270',
+    price: 14994,
+    img: '/img/sneakers/2.jpg'
+  },
+  {
+    id: 3,
+    name: 'Мужские Кроссовки Nike Blazer Mid Suede',
+    alt: 'Мужские Кроссовки Nike Blazer Mid Suede',
+    price: 15994,
+    img: '/img/sneakers/3.jpg'
+  },
+  {
+    id: 4,
+    name: 'Кроссовки Puma X Aka Boku Future Rider',
+    alt: 'Кроссовки Puma X Aka Boku Future Rider',
+    price: 10994,
+    img: '/img/sneakers/4.jpg'
+  },
+];
 
 function App() {
+
   return (
     <div className="wrapper clear">
       <Drawer />
@@ -17,10 +49,17 @@ function App() {
           </div>
         </div>
         <div className="d-flex">
-          <Card price={1222}/>
-          <Card price={1222}/>
-          <Card price={1222}/>
-          <Card price={1222}/>
+          {arr.map((product) => (
+            <Card
+              key={product.id}
+              name={product.name}
+              price={product.price}
+              img={product.img}
+              alt={product.alt}
+              onClick={() => console.log(product)}
+            />
+            ))
+          }
         </div>
       </div>
     </div>
