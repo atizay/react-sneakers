@@ -1,45 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Card from './components/Card';
 import Drawer from './components/Drawer';
 import Header from './components/Header';
 
-const arr = [
-  {
-    id: 1,
-    name: 'Мужские Кроссовки Nuke Blazer Mid Suede',
-    alt: 'Мужские Кроссовки Nuke Blazer Mid Suede',
-    price: 12994,
-    img: '/img/sneakers/1.jpg'
-  },
-  {
-    id: 2,
-    name: 'Мужские Кроссовки Nike Air Max 270',
-    alt: 'Мужские Кроссовки Nike Air Max 270',
-    price: 14994,
-    img: '/img/sneakers/2.jpg'
-  },
-  {
-    id: 3,
-    name: 'Мужские Кроссовки Nike Blazer Mid Suede',
-    alt: 'Мужские Кроссовки Nike Blazer Mid Suede',
-    price: 15994,
-    img: '/img/sneakers/3.jpg'
-  },
-  {
-    id: 4,
-    name: 'Кроссовки Puma X Aka Boku Future Rider',
-    alt: 'Кроссовки Puma X Aka Boku Future Rider',
-    price: 10994,
-    img: '/img/sneakers/4.jpg'
-  },
-];
-
 function App() {
+  const [items, setItems] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
+  const [cartOpened, setCartOpened] = useState(false);
+
+  useEffect(() => {
+    fetch('https://629e4f29c6ef9335c0b2ba29.mockapi.io/items')
+    .then((response) => {
+      return response.json();
+    })
+    .then((json) => {
+      setItems(json)
+    });
+  }, [items]);
+
+  const checkExisting = function (list, obj) {
+    return !list.every(function(elem) {
+        return elem.id === obj.id;
+    });
+}
+
+  const onAddToCart = (obj) => {
+    if (checkExisting(cartItems, obj)) {
+      setCartItems((prev) => [...prev, obj]);
+      console.log(cartItems);
+    }
+  }
 
   return (
     <div className="wrapper clear">
-      <Drawer />
-      <Header />
+      {cartOpened && <Drawer items={cartItems} onClose={() => setCartOpened(false)} />}      
+      <Header
+        onClickCart={() => setCartOpened(true)}
+      />
       <div className="content p-40">
         <div className='d-flex align-center mb-40 justify-between'>
           <h1>Все кроссовки</h1>
@@ -48,15 +45,16 @@ function App() {
             <input type="text" placeholder='Поиск...'/>
           </div>
         </div>
-        <div className="d-flex">
-          {arr.map((product) => (
+        <div className="d-flex flex-wrap">
+          {items.map((item) => (
             <Card
-              key={product.id}
-              name={product.name}
-              price={product.price}
-              img={product.img}
-              alt={product.alt}
-              onClick={() => console.log(product)}
+              key={item.id}
+              name={item.name}
+              price={item.price}
+              img={item.img}
+              alt={item.alt}
+              onFavorite={() => console.log('on click favorite')}
+              onPlus={(obj) => onAddToCart(obj)}
             />
             ))
           }
