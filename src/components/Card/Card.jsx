@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import classes from './Card.module.scss';
 
-function Card({ name, alt, img, price, onFavorite, onPlus }) {
+function Card({ id, name, alt, img, price, onFavorite, onPlus, favorited = false }) {
   const [isAdded, setIsAdded] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(favorited);
 
   const onClickPlus = () => {
     onPlus({ name, price, img });
     setIsAdded(!isAdded);
+  }
+
+  const onClickFavorite = () => {
+    onFavorite({ id, name, price, img });
+    setIsFavorite(!isFavorite);
   }
 
   return (
@@ -15,7 +21,7 @@ function Card({ name, alt, img, price, onFavorite, onPlus }) {
         className={classes.favorite}
         onClick={onFavorite}
       >
-        <img src="/img/unliked.svg" alt={alt} />
+        <img src={isFavorite ? "/img/liked.svg" : "/img/unliked.svg"} alt={alt} onClick={onClickFavorite} />
       </div>
       <img width={133} height={112} src={img} alt="Sneakers" />
       <h5>{name}</h5>

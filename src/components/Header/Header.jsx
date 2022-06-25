@@ -1,15 +1,19 @@
+import { Link } from 'react-router-dom'
+
 function Header(props) {
   return (
     <>
       <header className="d-flex justify-between align-center p-40">
-        <div className="d-flex align-center">
-          <img src='/img/logo.png' className="logo__img" alt="React Sneakers" width={40} height={40}/>
-          <div>
-            <h3 className="text-uppercase">React Sneakers</h3>
-            <p className="opacity-5">Магазин лучших кроссовок</p>
+        <Link to="/">
+          <div className="d-flex align-center">
+              <img src='/img/logo.png' className="logo__img" alt="React Sneakers" width={40} height={40}/>
+            <div>
+              <h3 className="text-uppercase">React Sneakers</h3>
+              <p className="opacity-5">Магазин лучших кроссовок</p>
+            </div>
           </div>
-        </div>
-        <ul className="d-flex">
+        </Link>
+        <ul className="d-flex align-center">
           <li className="mr-30 cu-p"
             onClick={props.onClickCart}
           >
@@ -19,6 +23,11 @@ function Header(props) {
             <path d="M1 1H4.27273L6.46545 11.9555C6.54027 12.3321 6.7452 12.6705 7.04436 12.9113C7.34351 13.1522 7.71784 13.2801 8.10182 13.2727H16.0545C16.4385 13.2801 16.8129 13.1522 17.112 12.9113C17.4112 12.6705 17.6161 12.3321 17.6909 11.9555L19 5.09091H5.09091" stroke="#9B9B9B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
             <span>1204 руб.</span>
+          </li>
+          <li className="mr-20 cu-p">
+            <Link to="/wishlist">
+              <img src="/img/heart.svg" alt="Heart" width={18} height={18} />
+            </Link>
           </li>
           <li>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
