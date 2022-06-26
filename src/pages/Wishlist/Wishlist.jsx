@@ -1,17 +1,19 @@
 import React from "react"
+import { useContext } from "react";
 import Card from "../../components/Card"
+import AppContext from "../../context";
 
-function Wishlist({ items, onAddToFavorite }) {
+function Wishlist({ onAddToFavorite }) {
+    const { favorites } = useContext(AppContext);
     return (
         <div className="content p-40">
             <div className='d-flex align-center mb-40 justify-between'>
                 <h1>Избранные товары</h1>
             </div>
             <div className="d-flex flex-wrap">
-            {items
-                .map((item) => (
+            {favorites.map((item, index) => (
                     <Card
-                    key={item.id}
+                    key={index}
                     favorited={true}
                     onFavorite={onAddToFavorite}
                     // onWishlist={(obj) => onAddToFavorite(obj)}

@@ -112,6 +112,10 @@ header {
 
     .greenButton {
         position: relative;
+        
+        &:disabled {
+            animation: button-loading 0.6s ease-in-out infinite;
+        }
 
         &:hover {
             img {
@@ -139,6 +143,11 @@ header {
     font-weight: 600;
     cursor: pointer;
     transition: background 0.2s ease-in-out;
+
+    &:disabled {
+        background-color: #bebebe!important;
+        cursor: default;
+    }
 
     &:hover {
         background: lighten(#9dd558, 5%);
@@ -209,5 +218,17 @@ header {
         &:hover {
             opacity: 1;
         }
+    }
+}
+
+@keyframes button-loading {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: .7;
+    }
+    100% {
+        opacity: 1;
     }
 }
