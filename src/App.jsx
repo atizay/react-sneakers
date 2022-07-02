@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, createContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router-dom'
 import axios from 'axios';
 import Drawer from './components/Drawer'
@@ -116,7 +116,7 @@ function App() {
         <Header onClickCart={() => setCartOpened(true)} />
 
         <Routes>
-          <Route path="" index element={
+          <Route index element={
             <Home
               items={items}
               cartItems={cartItems}
@@ -127,12 +127,12 @@ function App() {
               onAddToCart={onAddToCart}
               isLoading={isLoading}
           />} />
-          <Route path="wishlist" element={
+          <Route path="/wishlist" element={
             <Wishlist
               onAddToFavorite={onAddToFavorite}
             />
           }/>
-          <Route path="orders" element={
+          <Route path="/orders" element={
             <Orders />
           }/>
         </Routes>

@@ -1,7 +1,5 @@
 import React from "react"
-import { useContext } from "react";
 import Card from "../../components/Card"
-import AppContext from "../../context";
 
 function Home({
   items,
@@ -13,20 +11,6 @@ function Home({
   isLoading
 }) {
     const renderItems = () => {
-    // const filtredItems = items.filter((item) =>
-    //   item.name.toLowerCase().includes(searchValue.toLowerCase()),
-    // );
-    
-    // return (isLoading ? [...Array(8)] : filtredItems).map((item, index) => (
-        
-    //   <Card
-    //     key={index}
-    //     onFavorite={(obj) => onAddToFavorite(obj)}
-    //     onPlus={(obj) => onAddToCart(obj)}
-    //     added={cartItems.some((obj) => Number(obj.id) === Number(item.id))}
-    //     loading={isLoading}
-    //     {...item}
-    //   />
     return items
         .filter((item) => item.name.toLowerCase().includes(searchValue.toLowerCase()))
         .map((item) => (

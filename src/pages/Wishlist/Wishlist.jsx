@@ -16,7 +16,6 @@ function Wishlist({ onAddToFavorite }) {
                     key={index}
                     favorited={true}
                     onFavorite={onAddToFavorite}
-                    // onWishlist={(obj) => onAddToFavorite(obj)}
                     {...item}
                     />
                     ))
