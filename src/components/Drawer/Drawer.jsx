@@ -41,7 +41,7 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
       <div className={styles.drawer}>
         <h2 className="d-flex mb-30 justify-between">
           Корзина
-          <img onClick={onClose} className="removeBtn cu-p" src="/img/btn-remove.svg" alt="Remove" />
+          <img onClick={onClose} className="removeBtn cu-p" src="img/btn-remove.svg" alt="Remove" />
         </h2>
 
         {items.length ?
@@ -58,7 +58,7 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
                     <p className='mb-5'>{obj.name}</p>
                     <b>{obj.price} руб.</b>
                   </div>
-                  <img onClick={() => onRemove(obj.id)} className="removeBtn" src="/img/btn-remove.svg" alt="Remove" />
+                  <img onClick={() => onRemove(obj.id)} className="removeBtn" src="img/btn-remove.svg" alt="Remove" />
                 </div>
               ))
             }
@@ -75,7 +75,7 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
                   <div></div>
                   <b>{Math.round(totalPrice / 100 * 5)} руб.</b>
                 </li>
-                <button disabled={isLoading} className="greenButton" onClick={onClickOrder}>Оформить заказ <img src="/img/arrow.svg" alt="Arrow" /></button>
+                <button disabled={isLoading} className="greenButton" onClick={onClickOrder}>Оформить заказ <img src="img/arrow.svg" alt="Arrow" /></button>
               </ul>
             </div>
           </div>
@@ -83,7 +83,7 @@ function Drawer({ onClose, onRemove, items = [], opened }) {
           <Info
             title={ isOrderComplete ? "Заказ оформлен!" : 'Пустая корзина'}
             description={ isOrderComplete ? `Ваш заказ #${orderId} скоро будет передан в доставку` : "Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ" }
-            img={ isOrderComplete ? "/img/complete-order.jpg" : "/img/empty-cart.jpg" }
+            img={ isOrderComplete ? "img/complete-order.jpg" : "img/empty-cart.jpg" }
           />
         }     
       </div>

@@ -116,7 +116,7 @@ function App() {
         <Header onClickCart={() => setCartOpened(true)} />
 
         <Routes>
-          <Route index element={
+          <Route path="" index element={
             <Home
               items={items}
               cartItems={cartItems}
@@ -127,12 +127,12 @@ function App() {
               onAddToCart={onAddToCart}
               isLoading={isLoading}
           />} />
-          <Route path="/wishlist" element={
+          <Route path="wishlist" element={
             <Wishlist
               onAddToFavorite={onAddToFavorite}
             />
           }/>
-          <Route path="/orders" element={
+          <Route path="orders" element={
             <Orders />
           }/>
         </Routes>

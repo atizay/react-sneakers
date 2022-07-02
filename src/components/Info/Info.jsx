@@ -12,7 +12,7 @@ function Info({ img, title, description }) {
             <p className="opacity-6">
                 {description}
             </p>
-            <button onClick={() => setCartOpened(false)} className="greenButton"><img src="/img/arrow.svg" alt="Arrow" />Вернуться назад</button>
+            <button onClick={() => setCartOpened(false)} className="greenButton"><img src="img/arrow.svg" alt="Arrow" />Вернуться назад</button>
         </div>
     )
 }

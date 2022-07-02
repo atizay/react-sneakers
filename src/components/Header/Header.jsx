@@ -10,7 +10,7 @@ function Header(props) {
       <header className="d-flex justify-between align-center p-40">
         <Link to="/">
           <div className="d-flex align-center">
-              <img src='/img/logo.png' className="logo__img" alt="React Sneakers" width={40} height={40}/>
+              <img src='img/logo.png' className="logo__img" alt="React Sneakers" width={40} height={40}/>
             <div>
               <h3 className="text-uppercase">React Sneakers</h3>
               <p className="opacity-5">Магазин лучших кроссовок</p>
@@ -30,7 +30,7 @@ function Header(props) {
           </li>
           <li className="mr-20 cu-p">
             <Link to="/wishlist">
-              <img src="/img/heart.svg" alt="Heart" width={18} height={18} />
+              <img src="img/heart.svg" alt="Heart" width={18} height={18} />
             </Link>
           </li>
           <li>
