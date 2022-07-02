@@ -17,13 +17,14 @@ function Card({
 }) {
   const { isItemAdded } = useContext(AppContext);
   const [isFavorite, setIsFavorite] = useState(favorited);
+  const obj = { id, parentId: id, name, price, img };
 
   const onClickPlus = () => {
-    onPlus({ id, name, price, img });
+    onPlus(obj);
   }
 
   const onClickFavorite = () => {
-    onFavorite({ id, name, price, img });
+    onFavorite(obj);
     setIsFavorite(!isFavorite);
   }
 
@@ -46,11 +47,13 @@ function Card({
 
         :
       <>
+      {onFavorite && (
         <div
           className={classes.favorite}
           onClick={onFavorite}>
           <img src={isFavorite ? "/img/liked.svg" : "/img/unliked.svg"} alt={alt} onClick={onClickFavorite} />
         </div>
+      )}
         <img width="100%" height={135} src={img} alt="Sneakers" />
         <h5>{name}</h5>
         <div className="d-flex justify-between align-center">
@@ -58,11 +61,13 @@ function Card({
             <span>Цена:</span>
             <b>{price} руб.</b>
           </div>
+          {onPlus && (
           <img
             className={classes.plus}
             src={isItemAdded(id) ? "/img/btn-checked.svg" : "/img/btn-plus.svg"}
             alt="Plus"
             onClick={onClickPlus} />
+          )}
         </div>
       </>
       }

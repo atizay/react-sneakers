@@ -1,13 +1,15 @@
 import axios from "axios";
-import { useContext } from "react";
 import { useState } from "react";
-import AppContext from "../../context";
+
+import { useCart } from "../../hooks/useCart";
 import Info from "../Info/Info";
+
+import styles from './Drawer.module.scss';
 
 const delay = () => new Promise((resolve) => setTimeout(resolve, 1000));
 
-function Drawer({ onClose, onRemove, items = [] }) {
-  const { cartItems, setCartItems } = useContext(AppContext);
+function Drawer({ onClose, onRemove, items = [], opened }) {
+  const { cartItems, setCartItems, totalPrice } = useCart();
   const [orderId, setOrderId] = useState(null);
   const [isOrderComplete, setIsOrderComplete] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -35,8 +37,8 @@ function Drawer({ onClose, onRemove, items = [] }) {
   }
 
   return (
-    <div className="overlay">
-      <div className="drawer">
+    <div className={`${styles.overlay} ${opened ? styles.overlayVisible : ''}`}>
+      <div className={styles.drawer}>
         <h2 className="d-flex mb-30 justify-between">
           Корзина
           <img onClick={onClose} className="removeBtn cu-p" src="/img/btn-remove.svg" alt="Remove" />
@@ -44,7 +46,7 @@ function Drawer({ onClose, onRemove, items = [] }) {
 
         {items.length ?
           <div className="d-flex flex-column flex">
-            <div className="items">
+            <div className="items flex">
             {
               items.map((obj) => (
                 <div className="cartItem d-flex align-center mb-20" key={obj.id}>
@@ -66,12 +68,12 @@ function Drawer({ onClose, onRemove, items = [] }) {
                 <li>
                   <span>Итого:</span>
                   <div></div>
-                  <b>22 498 руб.</b>
+                  <b>{totalPrice} руб.</b>
                 </li>
                 <li>
                   <span>Налог 5%:</span>
                   <div></div>
-                  <b>{1074*1.05} руб.</b>
+                  <b>{Math.round(totalPrice / 100 * 5)} руб.</b>
                 </li>
                 <button disabled={isLoading} className="greenButton" onClick={onClickOrder}>Оформить заказ <img src="/img/arrow.svg" alt="Arrow" /></button>
               </ul>
